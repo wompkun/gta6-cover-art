@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Bay Cover Maker — GTA-style poster covers</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app">
+  <section class="panel editor" aria-label="Cover editor">
+    <header class="brand">
+      <h1>NEON BAY <span>Cover Maker</span></h1>
+      <p>Turn a photo and a caption into a GTA-style poster cover. Everything
+      runs on your machine — photos never leave it.</p>
+    </header>
+
+    <section class="group" aria-label="Photos">
+      <h2>1 · Photos</h2>
+      <p class="hint">Three panels, three photos — or one photo for all of them.</p>
+      <div class="slots" id="slots"></div>
+      <div class="row">
+        <button id="fillAll" type="button">Fill all panels with the hero photo</button>
+        <button id="sampleBtn" type="button">Load the sample photos</button>
+      </div>
+      <label class="upload">Upload your own photo
+        <input id="upload" type="file" accept="image/*">
+      </label>
+      <p class="hint">Uploads go to the panel you picked above.</p>
+    </section>
+
+    <section class="group" aria-label="Crop and position">
+      <h2>2 · Crop &amp; position</h2>
+      <p class="hint">Pick a panel, then drag the preview or use the sliders.</p>
+      <div class="row wrap" id="panelPick" role="group" aria-label="Pick a panel">
+        <button type="button" data-panel="0" class="picked">Hero</button>
+        <button type="button" data-panel="1">Panel 2</button>
+        <button type="button" data-panel="2">Panel 3</button>
+      </div>
+      <label>Zoom <span class="val" id="zoomVal">1.00×</span>
+        <input id="zoom" type="range" min="1" max="3" step="0.05" value="1">
+      </label>
+      <label>Move left / right <span class="val" id="oxVal">0</span>
+        <input id="ox" type="range" min="-1" max="1" step="0.05" value="0">
+      </label>
+      <label>Move up / down <span class="val" id="oyVal">0</span>
+        <input id="oy" type="range" min="-1" max="1" step="0.05" value="0">
+      </label>
+    </section>
+
+    <section class="group" aria-label="Caption and style">
+      <h2>3 · Caption &amp; style</h2>
+      <label>Title <span class="hint-inline">two lines, Enter splits</span>
+        <textarea id="title" rows="2" maxlength="60">MIDNIGHT
+HEIST</textarea>
+      </label>
+      <label>Subtitle
+        <input id="subtitle" type="text" maxlength="40" value="NEON BAY">
+      </label>
+      <div class="row wrap" id="themePick" role="group" aria-label="Colour theme">
+        <button type="button" data-theme="sunset" class="picked">Sunset</button>
+        <button type="button" data-theme="neon">Neon</button>
+        <button type="button" data-theme="midnight">Midnight</button>
+      </div>
+    </section>
+
+    <section class="group" aria-label="Export">
+      <h2>4 · Export</h2>
+      <div class="row wrap" id="sizePick" role="group" aria-label="Export size">
+        <button type="button" data-size="square" class="picked">Square 1080×1080</button>
+        <button type="button" data-size="portrait">Portrait 1080×1350</button>
+        <button type="button" data-size="wide">Wide 1920×1080</button>
+      </div>
+      <button id="export" type="button" class="primary">Export PNG</button>
+      <p id="status" role="status"></p>
+    </section>
+  </section>
+
+  <section class="preview" aria-label="Live preview">
+    <div class="preview-head">
+      <h2>Live preview</h2>
+      <p id="previewSize">1080 × 1080</p>
+    </div>
+    <canvas id="cover" width="1080" height="1080" aria-label="The cover preview"></canvas>
+    <p class="hint">Drag the preview to move the picked panel's photo.</p>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
